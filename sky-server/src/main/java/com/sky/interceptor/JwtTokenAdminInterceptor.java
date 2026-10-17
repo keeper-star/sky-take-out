@@ -56,5 +56,8 @@ public class JwtTokenAdminInterceptor implements HandlerInterceptor {
             response.setStatus(401);
             return false;
         }
+        finally {
+            BaseContext.removeCurrentId();
+        }
     }
 }
