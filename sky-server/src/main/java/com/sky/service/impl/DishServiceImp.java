@@ -124,6 +124,20 @@ public class DishServiceImp implements DishService {
         dishVO.setFlavors(dishFlavors);
         return dishVO ;
     }
+
+    /**
+     * 根据分类id查询菜品
+     * @param categoryId
+     * @return
+     */
+    public List<Dish> list(Long categoryId) {
+        Dish dish = Dish.builder()
+                .categoryId(categoryId)
+                .status(StatusConstant.ENABLE)
+                .build();
+        return dishMapper.list(dish);
+    }
+
     /**
      * 根据id修改菜品基本信息和口味信息
      */
@@ -138,6 +152,7 @@ public class DishServiceImp implements DishService {
         //删除原有的口味数据
         dishFlavorMapper.deleteByDishId(dishDTO.getId());
 
+
         //重新插入口味数据
         List<DishFlavor> flavors=dishDTO.getFlavors();
         if (flavors != null && !flavors.isEmpty()) {
@@ -148,6 +163,7 @@ public class DishServiceImp implements DishService {
             //向口味表插入n条数据
             dishFlavorMapper.insertBatch(flavors);
         }
+
     }
 
 

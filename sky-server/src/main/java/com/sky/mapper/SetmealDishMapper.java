@@ -14,4 +14,23 @@ public interface SetmealDishMapper {
      * @return
      */
     List<Long> getSetmealDishIds(List<Long> dishIds);
+
+    /**
+     * 批量保存套餐和菜品的关联关系
+     * @param setmealDishes
+     */
+    void insertBatch(List<SetmealDish> setmealDishes);
+
+    /**
+     * 根据套餐ID删除套餐和菜品的关联关系
+     * @param setmealId
+     */
+    void deleteBySetmealId(Long setmealId);
+
+    /**
+     * 根据套餐ID查询套餐和菜品的关联关系
+     * @param id
+     * @return
+     */
+    List<SetmealDish> getBySetmealId(Long id);
 }
