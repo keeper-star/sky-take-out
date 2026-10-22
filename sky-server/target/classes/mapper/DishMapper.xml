@@ -20,6 +20,9 @@
     <select id="list" resultType="com.sky.entity.Dish" parameterType="com.sky.entity.Dish">
         select * from dish
         <where>
+            <if test="name != null">
+                and name like concat('%',#{name},'%')
+            </if>
             <if test="categoryId != null">
                 and category_id = #{categoryId}
             </if>
@@ -61,6 +64,7 @@
       </set>
         where id=#{id}
     </update>
+
 
     <!--分页查询菜品-->
     <select id="page" resultType="com.sky.vo.DishVO">
