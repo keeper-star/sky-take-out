@@ -65,6 +65,11 @@
         where id=#{id}
     </update>
 
+    <!--根据id修改菜品状态-->
+    <update id="updateStatus">
+        update dish set status = #{status} where id = #{id}
+    </update>
+
 
     <!--分页查询菜品-->
     <select id="page" resultType="com.sky.vo.DishVO">

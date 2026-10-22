@@ -4,6 +4,7 @@ package com.sky.config;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
@@ -14,6 +15,8 @@ import org.springframework.data.redis.support.collections.RedisCollectionFactory
 @Slf4j
 public class RedisConfiguration {
 
+    //解决redis中文乱码问题
+    @Primary
     @Bean
     public RedisTemplate redisTemplate(RedisCollectionFactoryBean redisCollectionFactoryBean){
 

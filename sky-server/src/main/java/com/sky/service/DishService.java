@@ -59,4 +59,6 @@ public interface DishService {
      * @param dishDTO
      */
     void updateWithFlavor(DishDTO dishDTO);
+
+    void statusOrStop(Integer status, Long id);
 }
