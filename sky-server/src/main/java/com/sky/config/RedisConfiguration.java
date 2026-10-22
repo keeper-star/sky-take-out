@@ -10,7 +10,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.data.redis.support.collections.RedisCollectionFactoryBean;
 
-
 @Configurable
 @Slf4j
 public class RedisConfiguration {
@@ -25,6 +24,15 @@ public class RedisConfiguration {
         redisTemplate.setConnectionFactory((RedisConnectionFactory) redisCollectionFactoryBean);
         //设置redis key 的序列化器
         redisTemplate.setKeySerializer(new StringRedisSerializer());
+
+        //设置redis value 的序列化器
+        redisTemplate.setValueSerializer(new StringRedisSerializer());
+
+        //设置redis hash key 的序列化器
+        redisTemplate.setHashKeySerializer(new StringRedisSerializer());
+
+        //设置redis hash value 的序列化器
+        redisTemplate.setHashValueSerializer(new StringRedisSerializer());
         return redisTemplate;
     }
 
