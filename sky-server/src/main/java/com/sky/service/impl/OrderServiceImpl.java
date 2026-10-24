@@ -84,7 +84,7 @@ public class OrderServiceImpl implements OrderService {
         orders.setStatus(Orders.PENDING_PAYMENT);
         orders.setPhone(addressBook.getPhone());
         orders.setConsignee(addressBook.getConsignee());
-
+        orders.setAddress(getAddress(addressBook.getId()));
         orderMapper.insert(orders);
 
         List<OrderDetail> orderDetailList =new ArrayList<>();
@@ -110,6 +110,14 @@ public class OrderServiceImpl implements OrderService {
                 .build();
 
         return orderSubmitVO;
+    }
+
+    public String getAddress(Long addressId) {
+
+        AddressBook byId = addressBookMapper.getById(addressId);
+        String address = byId.getProvinceName() + byId.getCityName() + byId.getDistrictName() + byId.getDetail();
+        return address;
+
     }
 
     /**
@@ -183,7 +191,7 @@ public class OrderServiceImpl implements OrderService {
             for (Orders orders : pageResult) {
 
                 Long orderId = orders.getId(); // 订单id
-
+                orders.setAddress(getAddress(orders.getAddressBookId()));
                 // 根据订单id查询订单明细
                 List<OrderDetail> orderDetails = orderDetailMapper.getByOrderId(orderId);
                 OrderVO orderVO = new OrderVO();
@@ -204,6 +212,7 @@ public class OrderServiceImpl implements OrderService {
 
         // 根据id查询订单
         Orders orders = orderMapper.getById(id);
+        orders.setAddress(getAddress(orders.getAddressBookId()));
 
         // 根据订单id查询订单明细
         List<OrderDetail> orderDetailList= orderDetailMapper.getByOrderId(orders.getId());
@@ -310,6 +319,7 @@ public class OrderServiceImpl implements OrderService {
         List<Orders> ordersList = page.getResult();
         if (!CollectionUtils.isEmpty(ordersList)) {
             for (Orders orders : ordersList) {
+                orders.setAddress(getAddress(orders.getAddressBookId()));
                 // 将共同字段复制到OrderVO
                 OrderVO orderVO = new OrderVO();
                 BeanUtils.copyProperties(orders, orderVO);

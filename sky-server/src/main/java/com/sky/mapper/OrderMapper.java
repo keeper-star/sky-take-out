@@ -41,7 +41,7 @@ public interface OrderMapper {
      * @param id
      * @return
      */
-    @Select("select * from orders where id = #{id}")
+    @Select("select * from orders  where orders.id = #{id} ")
     OrderVO getById(Long id);
 
     /**
