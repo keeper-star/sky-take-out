@@ -54,3 +54,7 @@ sky:
   wechat:
     appid: wx318d61a46fedb290
     secret: cf174cb85c63eaa36d04a9c6a30f78dc
+  shop:
+    address: 景德镇市珠山区曙光路3号
+  baidu:
+    ak: R4wPWIKofhr2s07UtMFBcLUztw8sPVCY
