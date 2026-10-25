@@ -15,7 +15,7 @@
     <!-- 根据菜品ID删除口味数据 -->
     <delete id="deleteByDishIds">
         delete from dish_flavor where dish_id in
-        <foreach collection="ids" item="id" separator=",">
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
             #{id}
         </foreach>
     </delete>
