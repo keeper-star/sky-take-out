@@ -3,6 +3,7 @@ package com.sky.controller.admin;
 import com.sky.result.Result;
 import com.sky.service.TurnoverReportService;
 import com.sky.vo.OrderReportVO;
+import com.sky.vo.SalesTop10ReportVO;
 import com.sky.vo.TurnoverReportVO;
 import com.sky.vo.UserReportVO;
 import lombok.extern.slf4j.Slf4j;
@@ -61,5 +62,17 @@ public class ReportController {
         log.info("订单统计，开始日期：{}，结束日期：{}", begin, end);
         OrderReportVO orderReportVO = turnoverReportService.getOrderStatistics(begin, end);
         return Result.success(orderReportVO);
+    }
+
+    /**
+     *  销售排名top10
+     */
+    @GetMapping("/top10")
+    public Result<SalesTop10ReportVO> top10(@DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate begin,
+                                            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end)
+    {
+        log.info("销售排名top10，开始日期：{}，结束日期：{}", begin, end);
+        SalesTop10ReportVO salesTop10ReportVO = turnoverReportService.getSalesTop10(begin,end);
+        return Result.success(salesTop10ReportVO);
     }
 }
