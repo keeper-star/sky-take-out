@@ -1,7 +1,7 @@
 package com.sky.controller.admin;
 
 import com.sky.result.Result;
-import com.sky.service.TurnoverReportService;
+import com.sky.service.ReportService;
 import com.sky.vo.OrderReportVO;
 import com.sky.vo.SalesTop10ReportVO;
 import com.sky.vo.TurnoverReportVO;
@@ -12,6 +12,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 
 /**
@@ -23,7 +25,7 @@ import java.time.LocalDate;
 public class ReportController {
 
     @Autowired
-    private TurnoverReportService turnoverReportService;
+    private ReportService reportService;
 
     /**
      * 营业额统计
@@ -36,7 +38,7 @@ public class ReportController {
                                                        @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end)
     {
         log.info("营业额统计，开始日期：{}，结束日期：{}", begin, end);
-        TurnoverReportVO turnoverReportVO = turnoverReportService.getTurnoverStatistics(begin, end);
+        TurnoverReportVO turnoverReportVO = reportService.getTurnoverStatistics(begin, end);
         return Result.success(turnoverReportVO);
     }
 
@@ -48,7 +50,7 @@ public class ReportController {
                                                @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end)
     {
         log.info("用户统计，开始日期：{}，结束日期：{}", begin, end);
-        UserReportVO userReportVO = turnoverReportService.getUserStatistics(begin, end);
+        UserReportVO userReportVO = reportService.getUserStatistics(begin, end);
         return Result.success(userReportVO);
     }
 
@@ -60,7 +62,7 @@ public class ReportController {
                                                  @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end)
     {
         log.info("订单统计，开始日期：{}，结束日期：{}", begin, end);
-        OrderReportVO orderReportVO = turnoverReportService.getOrderStatistics(begin, end);
+        OrderReportVO orderReportVO = reportService.getOrderStatistics(begin, end);
         return Result.success(orderReportVO);
     }
 
@@ -72,7 +74,18 @@ public class ReportController {
                                             @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end)
     {
         log.info("销售排名top10，开始日期：{}，结束日期：{}", begin, end);
-        SalesTop10ReportVO salesTop10ReportVO = turnoverReportService.getSalesTop10(begin,end);
+        SalesTop10ReportVO salesTop10ReportVO = reportService.getSalesTop10(begin,end);
         return Result.success(salesTop10ReportVO);
     }
+
+    /**
+     * 导出数据
+     */
+    @GetMapping("/export")
+    public void export(HttpServletResponse response) {
+
+        log.info("导出数据");
+        reportService.exportBussinessData(response);
+    }
+
 }

@@ -4,11 +4,11 @@ import com.sky.vo.OrderReportVO;
 import com.sky.vo.SalesTop10ReportVO;
 import com.sky.vo.TurnoverReportVO;
 import com.sky.vo.UserReportVO;
-import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 
-public interface TurnoverReportService {
+public interface ReportService {
 
     /**
      * 营业额统计
@@ -38,4 +38,10 @@ public interface TurnoverReportService {
      */
 
     SalesTop10ReportVO getSalesTop10(LocalDate begin, LocalDate end);
+
+    /**
+     * 导出数据报表
+     * @param response
+     */
+    void exportBussinessData(HttpServletResponse response);
 }
