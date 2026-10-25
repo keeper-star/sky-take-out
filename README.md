@@ -1,39 +1,69 @@
 项目中的不懂点：
 1.ThreadLocal 多线程
+
 2.AOP切面的实现
+
 3.Redis 缓存穿透 缓存雪崩 缓存击穿 
+
 4.微信支付功能实现
+
 5.配送地址是否超出范围判断功能实现
+
 6.微信小程序登录流程
+
 7.JWT令牌的生成及使用
+
 8.拦截器的使用
 
+
 苍穹外卖当中用到的技术：SpringBoot,ssm,nginx,Swagger,knife4j,全局异常处理器,ThreadLocal，pageHelper,AOP,Redis,HttpClient,SpringCache,Spring Task,WebSocket,Apache ECharts,Apache POI
+
+
 知识点总结：
+
 1.nginx反向代理介绍 :
+
 -将前端发送的动态请求由nginx转发到后端服务器
 
 --nginx反向代理的好处：
+
 ---提高访问速度
+
 因为nginx本身可以进行缓存，如果访问的同一接口，并且做了数据缓存，nginx就直接可把数据返回，不需要真正地访问服务端，从而提高访问速度。
 
+
 ---进行负载均衡
+
 所谓负载均衡,就是把大量的请求按照我们指定的方式均衡的分配给集群中的每台服务器。
 
+
 ---保证后端服务安全
+
 因为一般后台服务地址不会暴露，所以使用浏览器不能直接访问，可以把nginx作为请求访问的入口，请求到达nginx后转发到具体的服务中，从而保证后端服务的安全。
 
+
 2.Swagger knife4j
+
 -Swagger是一种基于OpenAPI规范的工具，用于设计、生成和文档化RESTful API
 
+
 --knife4j
+
 @Api	用在类上，例如Controller，表示对类的说明
+
 @ApiModel	用在类上，例如entity、DTO、VO
+
 @ApiModelProperty	用在属性上，描述属性信息
+
 @ApiOperation	用在方法上，例如Controller的方法，说明方法的用途、作用
 
+
+
+
 3. 全局异常处理器
+
 -全局异常处理器是一种用于集中处理应用程序中所有异常的机制。
+
 --在Spring框架中，可以通过@ExceptionHandler注解来定义一个全局异常处理器方法。当程序运行时抛出异常时，Spring会自动调用该方法来处理异常，而不是直接抛出到客户端。
 
 4.ThreadLocal
