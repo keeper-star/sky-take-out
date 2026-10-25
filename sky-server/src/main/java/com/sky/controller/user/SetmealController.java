@@ -28,7 +28,6 @@ public class SetmealController {
      * @return
      */
     @GetMapping("/list")
-    @ApiOperation("根据分类id查询套餐")
     @Cacheable(value = "setmealCache", key = "#categoryId")
     public Result<List<Setmeal>> list(Long categoryId) {
         Setmeal setmeal = new Setmeal();
