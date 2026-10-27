@@ -19,6 +19,7 @@
 
 苍穹外卖当中用到的技术：SpringBoot,ssm,nginx,Swagger,knife4j,全局异常处理器,ThreadLocal，pageHelper,AOP,Redis,HttpClient,SpringCache,Spring Task,WebSocket,Apache ECharts,Apache POI
 
+项目中未完全实现的技术：1.微信支付功能（需要商业资质） 2.判断地址是否超出配送范围 
 
 知识点总结：
 
